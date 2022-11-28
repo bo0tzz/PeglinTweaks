@@ -25,6 +25,9 @@ namespace PeglinTweaks
         private static ConfigEntry<float> enemyHealthMultiplierCfg;
         private static ConfigEntry<int> orbDiscardAmountCfg;
 
+        //Currency
+        private static ConfigEntry<int> startingGoldAmountCfg;
+
         public static void BindConfigs(ConfigFile config)
         {
             //Relics
@@ -42,14 +45,14 @@ namespace PeglinTweaks
 
             gravityCfg = config.Bind("Pachinko", "Gravity", 1.25f, "The strength of gravity on orbs");
             fireForceCfg = config.Bind("Pachinko", "Fire_Force", 630f, "The strength with which orbs are fired");
-            
+
             enableOrbsCollision = config.Bind("Pachinko", "Enable_Orb_Collision", false,
                 "Enable collision between orbs (when multiball is active)");
 
             //Battle
             playerDmgMultiplierCfg = config.Bind("Battle", "Player_Dmg_Multiplier", 1f,
                 "Multiplier for damage dealt by the player");
-            bombBaseDamageCfg = config.Bind("Battle", "Bomb_Base_Damage", 50f, 
+            bombBaseDamageCfg = config.Bind("Battle", "Bomb_Base_Damage", 50f,
                 "Base damage for bombs");
             enemyDmgMultiplierCfg = config.Bind("Battle", "Enemy_Dmg_Multiplier", 1f,
                 "Multiplier for all damage dealt by enemies");
@@ -59,6 +62,10 @@ namespace PeglinTweaks
                 "Multiplier for enemies' starting health");
             orbDiscardAmountCfg = config.Bind("Battle", "Orb_Discard_Amount", 1,
                 "The amount of orbs you can discard");
+
+            //Currency
+            startingGoldAmountCfg = config.Bind("Currency", "Starting_Gold_Amount", 15,
+                "The amount of gold the player starts a run with");
         }
 
         //Relics
@@ -73,7 +80,7 @@ namespace PeglinTweaks
         public static float FireForce => fireForceCfg.Value;
 
         public static bool EnableOrbsCollision => enableOrbsCollision.Value;
-        
+
         //Battle
         public static float PlayerDmgMultiplier => playerDmgMultiplierCfg.Value;
         public static float BombBaseDamage => bombBaseDamageCfg.Value;
@@ -81,5 +88,8 @@ namespace PeglinTweaks
         public static float PlayerStartingHealth => playerStartingHealthCfg.Value;
         public static float EnemyHealthMultiplier => enemyHealthMultiplierCfg.Value;
         public static int OrbDiscardAmount => orbDiscardAmountCfg.Value;
+
+        //Currency
+        public static int StartingGoldAmount => startingGoldAmountCfg.Value;
     }
 }
