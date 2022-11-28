@@ -3,7 +3,7 @@ using Relics;
 
 namespace PeglinTweaks.Pachinko
 {
-    [HarmonyPatch(typeof(PredictionManager), "Initialize")]
+    [HarmonyPatch(typeof(PredictionManager), nameof(PredictionManager.Initialize))]
     class PredictionManagerPatch
     {
         public static void Prefix(ref int ____baseMaxIterations)
@@ -18,7 +18,7 @@ namespace PeglinTweaks.Pachinko
         }
     }
 
-    [HarmonyPatch(typeof(PachinkoBall), "Start")]
+    [HarmonyPatch(typeof(PachinkoBall), nameof(PachinkoBall.Start))]
     class PhysicsPatch
     {
         public static void Prefix(ref float ___GravityScale, ref float ___FireForce)

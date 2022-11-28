@@ -7,7 +7,7 @@ using Battle;
 
 namespace PeglinTweaks.Relic
 {
-    [HarmonyPatch(typeof(PegManager), "ResetPeg")]
+    [HarmonyPatch(typeof(PegManager), nameof(PegManager.ResetPeg))]
     public class CookbookChancePatch
     {
         private static readonly FieldInfo chanceField = AccessTools.DeclaredField(typeof(RelicManager), "PEG_TO_BOMB_CHANCE");
@@ -31,12 +31,12 @@ namespace PeglinTweaks.Relic
         }
     }
 
-    [HarmonyPatch(typeof(BattleController), "ArmBallForShot")]
+    [HarmonyPatch(typeof(BattleController), nameof(BattleController.ArmBallForShot))]
     public class MatryoshkaMultiballLevelPatch
     {
         private static readonly FieldInfo MatryoshkaLevelField =
             AccessTools.DeclaredField(typeof(RelicManager), "MATRYOSHKA_MULTIBALL_LEVEL");
-        
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             foreach (var instruction in instructions)

@@ -8,7 +8,7 @@ using HarmonyLib;
 
 namespace PeglinTweaks.Battle
 {
-    [HarmonyPatch(typeof(Attack), "Initialize")]
+    [HarmonyPatch(typeof(Attack), nameof(Attack.Initialize))]
     class PlayerDmgMultiplierPatch
     {
         public static void Prefix(ref float ___DamagePerPeg, ref float ___CritDamagePerPeg)
@@ -18,7 +18,7 @@ namespace PeglinTweaks.Battle
         }
     }
 
-    [HarmonyPatch(typeof(BattleController), "Awake")]
+    [HarmonyPatch(typeof(BattleController), nameof(BattleController.Awake))]
     class BombDmgMultiplierPatch
     {
         public static void Postfix(BattleController __instance)
@@ -27,13 +27,13 @@ namespace PeglinTweaks.Battle
         }
     }
 
-    [HarmonyPatch(typeof(PlayerHealthController), "Damage")]
+    [HarmonyPatch(typeof(PlayerHealthController), nameof(PlayerHealthController.Damage))]
     class EnemyDmgMultiplierPatch
     {
         public static void Prefix(ref float damage) => damage *= Configuration.EnemyDmgMultiplier;
     }
 
-    [HarmonyPatch(typeof(GameInit), "Start")]
+    [HarmonyPatch(typeof(GameInit), nameof(GameInit.Start))]
     class PlayerStartHealthPatch
     {
         public static void Prefix(FloatVariable ___maxPlayerHealth, FloatVariable ___playerHealth)
@@ -43,16 +43,16 @@ namespace PeglinTweaks.Battle
         }
     }
 
-    [HarmonyPatch(typeof(Enemy), "Initialize")]
+    [HarmonyPatch(typeof(Enemy), nameof(Enemy.Initialize))]
     class EnemyHealthMultiplierPatch
     {
         public static void Prefix(ref float ___StartingHealth)
         {
-            ___StartingHealth = (float) Math.Round(___StartingHealth * Configuration.EnemyHealthMultiplier);
+            ___StartingHealth = (float)Math.Round(___StartingHealth * Configuration.EnemyHealthMultiplier);
         }
     }
 
-    [HarmonyPatch(typeof(BattleController), "MaxDiscardedShots", MethodType.Getter)]
+    [HarmonyPatch(typeof(BattleController), nameof(BattleController.MaxDiscardedShots), MethodType.Getter)]
     class OrbDiscardCountPatch
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
