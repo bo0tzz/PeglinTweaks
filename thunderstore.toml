@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "bo0tzz"
 name = "PeglinTweaks"
-versionNumber = "1.7.3"
+versionNumber = "1.8.0"
 description = "Various configurable tweaks to the game's behaviour and physics"
 websiteUrl = "https://github.com/bo0tzz/PeglinTweaks"
 containsNsfwContent = false
